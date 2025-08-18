@@ -33,22 +33,22 @@ npm install
 npx playwright test
 ```
 
-### Run a specific file
-
-```bash
-npx playwright test tests/api/createBook.spec.js
-```
-
-### Run by test title
-
-```bash
-npx playwright test tests/api/createBook.spec.js -g "Successfully create booking"
-```
-
 ### Run UI tests only
 
 ```bash
 npx playwright test tests/ui
+```
+
+### Run API tests only
+
+```bash
+npx playwright test tests/api
+```
+
+### Run a specific file
+
+```bash
+npx playwright test tests/api/createBooking
 ```
 
 ---
