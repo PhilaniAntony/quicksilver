@@ -70,32 +70,36 @@ npx monocart show-report reports/monocart-report.html
 ```
 Quicksilver-framework/
 │── .github/
-│   └── workflows/            # GitHub Actions CI/CD (bonus)
+│   └── workflows/             # GitHub Actions CI/CD
 │
 │── tests/
-│   ├── ui/                   # UI test cases
-│   │   ├── auth.spec.ts      # Authentication tests
-│   │   ├── inventory.spec.ts # Inventory management tests
-│   │   ├── cart.spec.ts      # Shopping cart tests
-│   │   └── checkout.spec.ts  # Checkout tests
+│   ├── ui/                    # UI test cases
+│   │   ├── auth.spec.js       # Authentication tests
+│   │   ├── inventory.spec.js  # Inventory management tests
+│   │   ├── cart.spec.js       # Shopping cart tests
+│   │   └── checkout.spec.js   # Checkout tests
 │   │
-│   ├── api/                  # API test cases
-│   │   ├── auth.spec.ts      # Authentication API tests
-│   │   ├── booking.spec.ts   # CRUD operations for bookings
-│   │   └── delete.spec.ts    # Dedicated DELETE method showcase
+│   ├── api/                   # API test cases
+│   │   ├── auth.spec.js            # Authentication API tests
+│   │   ├── createBooking.spec.js   # Create booking
+│   │   ├── deleteBooking.spec.js   # Delete booking
+│   │   ├── getAllBooking.spec.js   # Get all bookings
+│   │   ├── getBookingById.spec.js # Get booking by ID
+│   │   └── updateBooking.spec.js   # Update booking
 │   │
-│   └── helpers/              # Helper utilities (reusable functions)
+│   └── helpers/               # Helper utilities (reusable functions)
+│       ├── uiHelper.js        # UI login, cart, checkout helpers
+│       └── apiHelper.js       # API login, booking CRUD helpers
 │
 │── data/
-│   ├── testUsers.json        # UI test data (user credentials, etc.)
-│   ├── bookingData.json      # API test data
-│   └── config.json           # Configurable test data (URLs, etc.)
+│   ├── testUsers.json         # UI test data (user credentials, etc.)
+│   └── bookingData.json       # API test data
 │
-│── reports/                  # Test execution reports (auto-generated)
+│── reports/                   # Test execution reports (auto-generated)
 │
-│── playwright.config.ts      # Playwright configuration
-│── package.json              # Dependencies
-│── README.md                 # Documentation
+│── playwright.config.ts       # Playwright configuration
+│── package.json               # Dependencies
+│── README.md                  # Documentation
 
 ```
 
@@ -104,7 +108,6 @@ Quicksilver-framework/
 ## 🧪 Test Data Management
 
 - Centralized in `data/`
-- Supports randomized data generation (e.g., faker.js)
 - Reusable across API & UI tests
 
 ---
@@ -113,9 +116,8 @@ Quicksilver-framework/
 
 - [x] API CRUD coverage with Booking API
 - [x] Custom reporting with Monocart
-- [ ] UI automation layer with Playwright
-- [ ] CI/CD pipeline integration (GitHub Actions / Jenkins)
-- [ ] Environment management (dev/stage/prod configs)
+- [x] UI automation layer with Playwright
+- [x] CI/CD pipeline integration (GitHub Actions)
 
 ---
 
