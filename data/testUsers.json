@@ -6,5 +6,13 @@
   "invalidUser": {
     "username": "",
     "password": ""
+  },
+  "uiStandardUser": {
+    "username": "standard_user",
+    "password": "secret_sauce"
+  },
+  "uiLockedOutUser": {
+    "username": "locked_out_user",
+    "password": "secret_sauce"
   }
 }

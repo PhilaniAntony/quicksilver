@@ -1,4 +1,3 @@
-// @ts-check
 import { defineConfig, devices } from '@playwright/test';
 
 export default defineConfig({
@@ -7,12 +6,11 @@ export default defineConfig({
   forbidOnly: !!process.env.CI,
   retries: process.env.CI ? 2 : 0,
   workers: process.env.CI ? 1 : undefined,
-  reporter: [
-    ['list'], // console output
+  reporter: [ 
     ['monocart-reporter', {
-      outputFile: './reports/monocart-report.html', // where to save report
-      inlineAssets: true, // bundle css/js inside html
-      name: 'Playwright API + UI Test Framework',
+      outputFile: './reports/monocart-report.html', 
+      inlineAssets: true, 
+      name: 'Quicksilver End-to-End Test Framework',
       project: 'Assessment Task',
       outputDir: './reports',
       attachments: true
@@ -23,7 +21,6 @@ export default defineConfig({
   },
 
   projects: [
-    // UI Tests (SauceDemo)
     {
       name: 'ui-chromium',
       testDir: './tests/ui',
@@ -49,7 +46,6 @@ export default defineConfig({
       },
     },
 
-    // API Tests (Restful-Booker)
     {
       name: 'api-tests',
       testDir: './tests/api',

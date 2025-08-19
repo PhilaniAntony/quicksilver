@@ -1,5 +1,6 @@
 import { expect, test } from '@playwright/test';
 import bookingData from '../../data/bookingData.json';
+import { apiLogin } from '../helpers/apiHelper';
 import users from '../../data/testUsers.json';
 
 let bookingId;
@@ -10,8 +11,8 @@ test.describe.serial('Restful-Booker API - Delete Booking', () => {
     const createResponse = await request.post(`${baseURL}/booking`, { data: bookingData.newBooking });
     bookingId = (await createResponse.json()).bookingid;
 
-    const authResponse = await request.post(`${baseURL}/auth`, { data: users.validUser });
-    token = (await authResponse.json()).token;
+    const body = await apiLogin(baseURL, users.validUser.username, users.validUser.password);
+    token = body.token;
   });
 
   test('As a user, I should be able to delete my booking', async ({ request, baseURL }) => {
