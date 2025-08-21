@@ -1,17 +1,17 @@
-import { expect, test } from '@playwright/test';
-import bookingData from '../../data/bookingData.json';
-import { apiLogin } from '../helpers/apiHelper';
-import users from '../../data/testUsers.json';
+const { test, expect } = require('@playwright/test');
+const { apiLogin } = require('../helpers/apiHelper');
+const { newBooking } = require('../../data/bookingData.json');
+require('dotenv').config();
 
 let bookingId;
 let token;
 
 test.describe.serial('Restful-Booker API - Delete Booking', () => {
   test.beforeAll(async ({ request, baseURL }) => {
-    const createResponse = await request.post(`${baseURL}/booking`, { data: bookingData.newBooking });
+    const createResponse = await request.post(`${baseURL}/booking`, { data: newBooking });
     bookingId = (await createResponse.json()).bookingid;
 
-    const body = await apiLogin(baseURL, users.validUser.username, users.validUser.password);
+    const body = await apiLogin(baseURL, process.env.API_USER_USERNAME, process.env.API_USER_PASSWORD);
     token = body.token;
   });
 

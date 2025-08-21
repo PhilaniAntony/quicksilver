@@ -1,10 +1,15 @@
-import { expect, test } from '@playwright/test';
-import { apiLogin } from '../helpers/apiHelper';  
-import users from '../../data/testUsers.json';
+const { test, expect } = require('@playwright/test');
+const { apiLogin } = require('../helpers/apiHelper');
+require('dotenv').config();
+
 
 test.describe('Restful-Booker API - Auth', () => {
   test('As a user, I should be able to log in with valid credentials', async ({ request, baseURL }) => {
-    const body = await apiLogin(baseURL, users.validUser.username, users.validUser.password);
+    const body = await apiLogin(
+      baseURL,
+      process.env.API_USER_USERNAME,
+      process.env.API_USER_PASSWORD
+    );
 
     expect(body).not.toBeNull();
     expect(typeof body).toBe('object');
@@ -12,15 +17,14 @@ test.describe('Restful-Booker API - Auth', () => {
   });
 
   test('As a user, I should receive an error when logging in without credentials', async ({ request, baseURL }) => {
-    const response = await request.post(`${baseURL}/auth`, {
-      data: {
-        username: users.invalidUser.username,
-        password: users.invalidUser.password,
-      },
-    });
+    const body = await apiLogin(
+      baseURL,
+      process.env.INVALID_USER_USERNAME,
+      process.env.INVALID_USER_PASSWORD
+    );
 
-    expect(response.status()).toBe(200);
-    const body = await response.json();
+    expect(body).not.toBeNull();
+    expect(typeof body).toBe('object');
     expect(body).toHaveProperty('reason', 'Bad credentials');
   });
 });

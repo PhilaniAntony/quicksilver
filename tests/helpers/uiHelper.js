@@ -12,4 +12,6 @@ async function uiLogin(page, username, password) {
     return false;
 }
 
-module.exports = { uiLogin };
+module.exports = {
+    uiLogin,
+};

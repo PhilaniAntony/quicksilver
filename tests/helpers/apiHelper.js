@@ -18,4 +18,6 @@ async function apiLogin(baseURL, username, password) {
     }
 }
 
-module.exports = { apiLogin };
+module.exports = {
+    apiLogin,
+};

@@ -1,10 +1,14 @@
-import { expect, test } from '@playwright/test';
-import users from '../../data/testUsers.json';
-import { uiLogin } from '../helpers/uiHelper';
+const { test, expect } = require('@playwright/test');
+const { uiLogin } = require('../helpers/uiHelper');
+require('dotenv').config();
 
 test.describe('SauceDemo - Cart', () => {
   test.beforeEach(async ({ page }) => {
-    const isLoggedIn = await uiLogin(page, users.uiStandardUser.username, users.uiStandardUser.password);
+    const isLoggedIn = await uiLogin(page,
+      process.env.WEB_STANDARD_USER_USERNAME,
+      process.env.WEB_USER_PASSWORD
+    );
+
     expect(isLoggedIn).toBe(true);
   });
 

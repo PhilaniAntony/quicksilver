@@ -1,4 +1,5 @@
-import { expect, test } from '@playwright/test';
+const { test, expect } = require('@playwright/test');
+
 
 test.describe('Restful-Booker API - Get All Bookings', () => {
   test('As a user, I should be able to retrieve all bookings', async ({ request, baseURL }) => {

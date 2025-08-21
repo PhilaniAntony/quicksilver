@@ -1,12 +1,15 @@
-import { expect, test } from '@playwright/test';
-import users from '../../data/testUsers.json';
-import { uiLogin } from '../helpers/uiHelper';
+const { expect, test } = require('@playwright/test');
+const { uiLogin } = require('../helpers/uiHelper');
+require('dotenv').config();
 
 test.describe('SauceDemo - Checkout', () => {
   test.beforeEach(async ({ page }) => {
-    const isLoggedIn = await uiLogin(page, users.uiStandardUser.username, users.uiStandardUser.password);
-    expect(isLoggedIn).toBe(true);
+     const isLoggedIn = await uiLogin(page,
+      process.env.WEB_STANDARD_USER_USERNAME,
+      process.env.WEB_USER_PASSWORD
+    );
 
+    expect(isLoggedIn).toBe(true);
     await page.click('.inventory_item:nth-child(1) .btn_inventory');
     const cartBadge = page.locator('[data-test="shopping-cart-badge"]');
     await expect(cartBadge).toHaveText('1');
